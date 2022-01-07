@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Passero+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-font: 'Passero One', cursive;
+    --text-color: #eee;
+    --primary-color: #4ca590;
+    --secondary-color: #4FB099;
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url(./bg.jpg);
+    background-size: cover;
+    backdrop-filter: blur(20px);
+    height: 100vh;
+}
+
+header {
+    width: max-content;
+    margin: 2rem auto;
+    font-size: 3rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-shadow: 5px 6px 0px #000;
+    padding:.5rem 1.5rem;
+    border-left:7px solid var(--secondary-color);
+    border-right:7px solid var(--secondary-color);
+    border-radius: .5rem;
+    word-spacing: .8rem;
+}
+
+main{
+    flex-grow: 1;
+}
+
