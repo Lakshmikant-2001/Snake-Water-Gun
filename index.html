@@ -15,30 +15,34 @@
         <div id="user-selection-wrapper">
             <div class="des">
                 <p>Human</p>
-                <p class="score">Score: 90</p>
+                <p class="score">Score: <span id="user-score">0</span></p>
             </div>
             <div id="user-selection-disp" class="disp">
-                <img src="./assets/snake.png" alt="">
+                <img src="./assets/snake.png" alt="" id="user-selection-img">
             </div>
         </div>
         <div id="general-wrapper">
             <div>
-                <p><span>Snake</span> X <span>Water</span></p>
-                <p><span>Computer </span> won this turn!!</p>
+                <p><span id="user-selection">Snake</span> X <span id="computer-selection">Water</span></p>
+                <p><span id="round-winner">Computer </span> won this turn!!</p>
             </div>
             <div id="user-options-wrapper">
-                <div class="user-option" id="s-option">S</div>
-                <div class="user-option" id="w-option">W</div>
-                <div class="user-option" id="g-option">G</div>
+                <div class="user-option" data-key="snake">S</div>
+                <div class="user-option" data-key="water">W</div>
+                <div class="user-option" data-key="gun">G</div>
+            </div>
+            <div id="final-result-wrapper">
+                <p><span id="final-winner">Computer</span> won the match</p>
+               <img src="./assets/restart.png" alt="" id="restart-btn" title="restart">
             </div>
         </div>
         <div id="computer-selection-wrapper">
             <div class="des">
-                <p class="score">Score: 90</p>
+                <p class="score">Score: <span id="computer-score">0</span></p>
                 <p>Computer</p>
             </div>
             <div id="computer-selection-disp" class="disp">
-                <img src="./assets/water.png" alt="">
+                <img src="./assets/water.png" alt=""  id="computer-selection-img">
             </div>
         </div>
     </main>

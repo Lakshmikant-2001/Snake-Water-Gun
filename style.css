@@ -138,3 +138,22 @@ main {
     background-color: var(--secondary-color);
     transform: scale(1.1);
 }
+
+#final-result-wrapper{
+    justify-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:2.6rem;
+    display:none;
+    flex-grow: 1;
+    margin-top:10rem;
+}
+
+#restart-btn{
+    margin-top:3rem;
+    width: 60px;
+    border-radius: 50%;
+    box-shadow: 4px 3px 0px #333;
+    cursor: pointer;
+}
