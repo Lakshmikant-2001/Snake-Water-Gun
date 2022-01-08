@@ -16,10 +16,21 @@ const restartBtn = document.querySelector("#restart-btn");
 userOptions.forEach(option => {
     option.addEventListener("click", (e) => {
         playRound(e)
-    })
+    });
+    option.addEventListener("keydown", (e) => {
+        if (e.keyCode == 13) {
+            playRound(e)
+        }
+    });
 })
 
 restartBtn.addEventListener("click", restartGame)
+restartBtn.addEventListener("keydown", (e) => {
+    console.log(e)
+    if (e.keyCode == 13) {
+        restartGame()
+    }
+})
 
 function userSelect(e) {
     const targetElement = e.target;
@@ -36,10 +47,10 @@ function computerSelect() {
 function playRound(e) {
     const userSelection = userSelect(e);
     const computerSelection = computerSelect();
-    updateSelection(userSelection,computerSelection);
+    updateSelection(userSelection, computerSelection);
 
     console.log(userSelection, computerSelection)
-    let  roundWinner;
+    let roundWinner;
     if ((userSelection == "snake" && computerSelection == "water") || (userSelection == "water" && computerSelection == "snake")) {
         (userSelection == "snake") ? roundWinner = "user" : roundWinner = "computer";
     }
@@ -57,11 +68,11 @@ function playRound(e) {
     addScore(roundWinner)
 }
 
-function updateSelection(userSelection,computerSelection){
+function updateSelection(userSelection, computerSelection) {
     userSelectionTag.textContent = userSelection;
     computerSelectionTag.textContent = computerSelection;
-    userSelectionImg.setAttribute('src',`./assets/${userSelection}.png`);
-    computerSelectionImg.setAttribute('src',`./assets/${computerSelection}.png`)
+    userSelectionImg.setAttribute('src', `./assets/${userSelection}.png`);
+    computerSelectionImg.setAttribute('src', `./assets/${computerSelection}.png`)
 }
 
 
@@ -76,41 +87,41 @@ function addScore(roundWinner) {
         computerScore++;
         roundWinnerTag.textContent = roundWinner;
     }
-    else{
+    else {
         roundWinnerTag.textContent = roundWinner;
     }
 
-    updateScore(userScore,computerScore);
-    checkGameProgress(userScore,computerScore)
+    updateScore(userScore, computerScore);
+    checkGameProgress(userScore, computerScore)
 }
 
-function updateScore(userScore,computerScore){
-    userScoreTag.textContent=userScore;
-    computerScoreTag.textContent=computerScore;
+function updateScore(userScore, computerScore) {
+    userScoreTag.textContent = userScore;
+    computerScoreTag.textContent = computerScore;
 }
 
-function checkGameProgress(userScore,computerScore){
-    let finalWinner= null;
-    if(userScore == 5){
+function checkGameProgress(userScore, computerScore) {
+    let finalWinner = null;
+    if (userScore == 5) {
         finalWinner = "user";
     }
-    else if(computerScore == 5){
+    else if (computerScore == 5) {
         console.log("d");
         finalWinner = "computer";
     }
-    if(finalWinner!=null){
+    if (finalWinner != null) {
         gameOver(finalWinner)
     }
 }
 
-function gameOver(finalWinner){
+function gameOver(finalWinner) {
     generalWrapperChild.forEach(child => {
-        child.style.display="none";
+        child.style.display = "none";
     });
-    finalResultWrapper.style.display="flex";
-    finalWinnerTag.textContent=finalWinner;
+    finalResultWrapper.style.display = "flex";
+    finalWinnerTag.textContent = finalWinner;
 }
 
-function restartGame(){
+function restartGame() {
     location.reload()
 }

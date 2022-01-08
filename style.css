@@ -87,6 +87,8 @@ main {
     padding: 1rem;
     border-radius: 50%;
     box-shadow: 3px 3px 3px #333;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 #general-wrapper{
@@ -132,9 +134,10 @@ main {
     cursor: pointer;
     transition: all .3s ease;
     margin: 0 1rem;
+    user-select: none;
 }
 
-.user-option:hover {
+.user-option:hover , .user-option:focus{
     background-color: var(--secondary-color);
     transform: scale(1.1);
 }
@@ -156,4 +159,13 @@ main {
     border-radius: 50%;
     box-shadow: 4px 3px 0px #333;
     cursor: pointer;
+    transition: transform .1s linear;
+}
+
+#restart-btn:focus,#restart-btn:hover{
+    transform: rotate(.25turn);
+}
+
+#restart-btn:focus{
+    outline: 3px solid #333;
 }
