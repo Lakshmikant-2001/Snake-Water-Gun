@@ -81,11 +81,40 @@ main {
 }
 
 .disp img {
-    width: 40%;
+    background-color: #333;
+    width: 110px;
+    height: 110px;
+    padding: 1rem;
+    border-radius: 50%;
+    box-shadow: 3px 3px 3px #333;
+}
+
+#general-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#general-wrapper > :first-child{
+    font-size: 2.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#general-wrapper > :first-child > p{
+    margin:1rem 0;
+}
+
+#general-wrapper span{
+    text-transform: uppercase;
+    -webkit-text-stroke: 2px var(--secondary-color);
 }
 
 #user-options-wrapper {
     display: flex;
+    margin-bottom: 3rem;
 }
 
 .user-option {
