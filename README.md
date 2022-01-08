@@ -1,1 +1,1 @@
-Stone Paper Scissor Game (vs Computer)
+Snake Water Gun Game (vs Computer)
