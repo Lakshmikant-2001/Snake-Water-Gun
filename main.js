@@ -19,9 +19,28 @@ const iBtn = document.querySelector("#i-btn");
 const mnkyImg = document.querySelector("#monkey-img");
 const userWinAudio = document.querySelector("#user-win-audio");
 const computerWinAudio = document.querySelector("#computer-win-audio");
+const kidsModeTag = document.querySelector("#kids-mode");
+const onBtn = document.querySelector("#on");
+const offBtn = document.querySelector("#off");
 
+let kidsMode = "off";
 const options = ["snake", "water", "gun"];
 let i = 0;
+
+onBtn.addEventListener("click", () => {
+    offBtn.style.backgroundColor = "transparent";
+    onBtn.style.backgroundColor = "#4ca590";
+    kidsModeTag.dataset.key = "on";
+    kidsMode = kidsModeTag.dataset.key;
+});
+
+offBtn.addEventListener("click", () => {
+    onBtn.style.backgroundColor = "transparent";
+    offBtn.style.backgroundColor = "#4ca590";
+    kidsModeTag.dataset.key = "off";
+    kidsMode = kidsModeTag.dataset.key;
+    mnkyImg.style.display="none";
+});
 
 
 userOptions.forEach(option => {
@@ -53,8 +72,8 @@ function changeToWaitState(e) {
     waitMsgTag.style.visibility = "unset";
     userSelectionImg.classList.add("sel-img");
     computerSelectionImg.classList.add("sel-img");
-    mnkyImg.style.display="none";
-    mnkyImg.removeAttribute("class")
+    mnkyImg.style.display = "none";
+    mnkyImg.removeAttribute("class");
     setTimeout(() => {
         removeWaitState(e, myInterval)
     }, 1000);
@@ -75,6 +94,7 @@ function allowEvents() {
     userOptions.forEach(option => {
         option.style.pointerEvents = "unset";
     });
+    kidsModeTag.style.pointerEvents="unset";
 }
 
 function blockEvents() {
@@ -82,6 +102,7 @@ function blockEvents() {
     userOptions.forEach(option => {
         option.style.pointerEvents = "none";
     });
+    kidsModeTag.style.pointerEvents="none";
 }
 
 function selectionAnimation() {
@@ -145,16 +166,20 @@ function addScore(roundWinner) {
     if (roundWinner == "user") {
         userScore++;
         roundWinnerTag.textContent = roundWinner;
-        mnkyImg.style.display = "unset";
-        mnkyImg.classList.add("mnky-left");
-        userWinAudio.play();
+        if (kidsMode == "on") {
+            mnkyImg.style.display = "unset";
+            mnkyImg.classList.add("mnky-left");
+            userWinAudio.play();
+        }
     }
     else if (roundWinner == "computer") {
         computerScore++;
         roundWinnerTag.textContent = roundWinner;
-        mnkyImg.style.display = "unset";
-        mnkyImg.classList.add("mnky-right");
-        computerWinAudio.play()
+        if (kidsMode == "on") {
+            mnkyImg.style.display = "unset";
+            mnkyImg.classList.add("mnky-right");
+            computerWinAudio.play()
+        }
     }
     else {
         roundWinnerTag.textContent = roundWinner;

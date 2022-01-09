@@ -30,8 +30,13 @@ body {
 }
 
 header {
-    width: max-content;
-    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    margin: 2rem;
+}
+
+#header-title {
+    margin: 0 auto;
     font-size: 3rem;
     font-weight: bolder;
     text-transform: uppercase;
@@ -41,6 +46,49 @@ header {
     border-right: 7px solid var(--secondary-color);
     border-radius: .5rem;
     word-spacing: .8rem;
+}
+
+#header-options {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    margin-right: 3rem;
+}
+
+#header-options img {
+    width: 30px;
+    height: 30px;
+    margin: 0 .8rem;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#header-options img:hover{
+}
+
+#header-options> p{
+    margin-right: 1rem;
+}
+
+#kids-mode {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    border:1px solid var(--primary-color);
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+#off,#on{
+    cursor: pointer;
+    padding:.2rem .5rem;
+}
+
+#off{
+    background-color: var(--primary-color);
+    border-right: 1px solid var(--primary-color);
 }
 
 main {
