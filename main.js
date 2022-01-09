@@ -17,6 +17,8 @@ const userOptionsWrapper = document.querySelector("#user-options-wrapper");
 const waitMsgTag = document.querySelector("#wait-msg");
 const iBtn = document.querySelector("#i-btn");
 const mnkyImg = document.querySelector("#monkey-img");
+const userWinAudio = document.querySelector("#user-win-audio");
+const computerWinAudio = document.querySelector("#computer-win-audio");
 
 const options = ["snake", "water", "gun"];
 let i = 0;
@@ -43,6 +45,8 @@ restartBtn.addEventListener("keydown", (e) => {
 });
 
 function changeToWaitState(e) {
+    userWinAudio.pause()
+    computerWinAudio.pause()
     blockEvents()
     const myInterval = setInterval(selectionAnimation, 200);
     roundWrapper.style.visibility = "hidden";
@@ -143,12 +147,14 @@ function addScore(roundWinner) {
         roundWinnerTag.textContent = roundWinner;
         mnkyImg.style.display = "unset";
         mnkyImg.classList.add("mnky-left");
+        userWinAudio.play();
     }
     else if (roundWinner == "computer") {
         computerScore++;
         roundWinnerTag.textContent = roundWinner;
         mnkyImg.style.display = "unset";
         mnkyImg.classList.add("mnky-right");
+        computerWinAudio.play()
     }
     else {
         roundWinnerTag.textContent = roundWinner;
