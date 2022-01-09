@@ -15,6 +15,9 @@ const generalWrapperChild = document.querySelectorAll("#general-wrapper > *");
 const restartBtn = document.querySelector("#restart-btn");
 const userOptionsWrapper = document.querySelector("#user-options-wrapper");
 const waitMsgTag = document.querySelector("#wait-msg");
+const iBtn = document.querySelector("#i-btn");
+const mnkyImg = document.querySelector("#monkey-img");
+
 const options = ["snake", "water", "gun"];
 let i = 0;
 
@@ -39,22 +42,28 @@ restartBtn.addEventListener("keydown", (e) => {
     }
 });
 
-function changeToWaitState(e){
+function changeToWaitState(e) {
     blockEvents()
-    const myInterval = setInterval(selectionAnimation, 100);
-    roundWrapper.style.visibility="hidden";
-    waitMsgTag.style.visibility="unset";
+    const myInterval = setInterval(selectionAnimation, 200);
+    roundWrapper.style.visibility = "hidden";
+    waitMsgTag.style.visibility = "unset";
+    userSelectionImg.classList.add("sel-img");
+    computerSelectionImg.classList.add("sel-img");
+    mnkyImg.style.display="none";
+    mnkyImg.removeAttribute("class")
     setTimeout(() => {
-        removeWaitState(e,myInterval)
+        removeWaitState(e, myInterval)
     }, 1000);
-} 
+}
 
-function removeWaitState(e,myInterval){
+function removeWaitState(e, myInterval) {
     allowEvents()
     clearInterval(myInterval)
     playRound(e)
-    waitMsgTag.style.visibility="hidden";
-    roundWrapper.style.visibility="unset";
+    userSelectionImg.classList.remove("sel-img");
+    computerSelectionImg.classList.remove("sel-img");
+    waitMsgTag.style.visibility = "hidden";
+    roundWrapper.style.visibility = "unset";
 }
 
 function allowEvents() {
@@ -132,10 +141,14 @@ function addScore(roundWinner) {
     if (roundWinner == "user") {
         userScore++;
         roundWinnerTag.textContent = roundWinner;
+        mnkyImg.style.display = "unset";
+        mnkyImg.classList.add("mnky-left");
     }
     else if (roundWinner == "computer") {
         computerScore++;
         roundWinnerTag.textContent = roundWinner;
+        mnkyImg.style.display = "unset";
+        mnkyImg.classList.add("mnky-right");
     }
     else {
         roundWinnerTag.textContent = roundWinner;
