@@ -54,6 +54,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin:0 5rem;
 }
 
 #user-selection-wrapper>.des, #computer-selection-wrapper>.des {
@@ -92,21 +93,31 @@ main {
 }
 
 #general-wrapper{
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
 
-#general-wrapper > :first-child{
+#round-wrapper{
     font-size: 2.6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#general-wrapper > :first-child > p{
+#round-wrapper > p{
     margin:1rem 0;
+}
+
+#wait-msg{
+    visibility: hidden;
+    font-size:4rem;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
 }
 
 #general-wrapper span{

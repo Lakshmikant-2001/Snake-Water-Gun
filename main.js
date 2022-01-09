@@ -7,22 +7,29 @@ const userSelectionTag = document.querySelector("#user-selection");
 const computerSelectionTag = document.querySelector("#computer-selection")
 const userSelectionImg = document.querySelector("#user-selection-img");
 const computerSelectionImg = document.querySelector("#computer-selection-img");
+const roundWrapper = document.querySelector("#round-wrapper")
 const roundWinnerTag = document.querySelector("#round-winner");
 const finalResultWrapper = document.querySelector("#final-result-wrapper");
 const finalWinnerTag = document.querySelector("#final-winner");
 const generalWrapperChild = document.querySelectorAll("#general-wrapper > *");
 const restartBtn = document.querySelector("#restart-btn");
+const userOptionsWrapper = document.querySelector("#user-options-wrapper");
+const waitMsgTag = document.querySelector("#wait-msg");
+const options = ["snake", "water", "gun"];
+let i = 0;
+
 
 userOptions.forEach(option => {
     option.addEventListener("click", (e) => {
-        playRound(e)
+        changeToWaitState(e);
     });
+
     option.addEventListener("keydown", (e) => {
         if (e.keyCode == 13) {
-            playRound(e)
+            changeToWaitState(e);
         }
     });
-})
+});
 
 restartBtn.addEventListener("click", restartGame)
 restartBtn.addEventListener("keydown", (e) => {
@@ -30,7 +37,51 @@ restartBtn.addEventListener("keydown", (e) => {
     if (e.keyCode == 13) {
         restartGame()
     }
-})
+});
+
+function changeToWaitState(e){
+    blockEvents()
+    const myInterval = setInterval(selectionAnimation, 100);
+    roundWrapper.style.visibility="hidden";
+    waitMsgTag.style.visibility="unset";
+    setTimeout(() => {
+        removeWaitState(e,myInterval)
+    }, 1000);
+} 
+
+function removeWaitState(e,myInterval){
+    allowEvents()
+    clearInterval(myInterval)
+    playRound(e)
+    waitMsgTag.style.visibility="hidden";
+    roundWrapper.style.visibility="unset";
+}
+
+function allowEvents() {
+    userOptionsWrapper.style.cursor = "pointer";
+    userOptions.forEach(option => {
+        option.style.pointerEvents = "unset";
+    });
+}
+
+function blockEvents() {
+    userOptionsWrapper.style.cursor = "not-allowed";
+    userOptions.forEach(option => {
+        option.style.pointerEvents = "none";
+    });
+}
+
+function selectionAnimation() {
+    if (i <= 2) {
+        userSelectionImg.setAttribute("src", `./assets/${options[i]}.png`);
+        computerSelectionImg.setAttribute("src", `./assets/${options[i]}.png`);
+        i++;
+    }
+    else {
+        i = 0;
+    }
+}
+
 
 function userSelect(e) {
     const targetElement = e.target;
@@ -39,7 +90,6 @@ function userSelect(e) {
 }
 
 function computerSelect() {
-    const options = ["snake", "water", "gun"]
     const randomOption = options[Math.floor(Math.random() * options.length)];
     return randomOption;
 }
