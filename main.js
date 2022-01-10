@@ -1,5 +1,5 @@
 
-
+const main = document.querySelector("main");
 const userOptions = document.querySelectorAll(".user-option");
 const userScoreTag = document.querySelector("#user-score");
 const computerScoreTag = document.querySelector("#computer-score");
@@ -11,21 +11,47 @@ const roundWrapper = document.querySelector("#round-wrapper")
 const roundWinnerTag = document.querySelector("#round-winner");
 const finalResultWrapper = document.querySelector("#final-result-wrapper");
 const finalWinnerTag = document.querySelector("#final-winner");
+const generalWrapper = document.querySelector("#general-wrapper");
 const generalWrapperChild = document.querySelectorAll("#general-wrapper > *");
 const restartBtn = document.querySelector("#restart-btn");
 const userOptionsWrapper = document.querySelector("#user-options-wrapper");
 const waitMsgTag = document.querySelector("#wait-msg");
-const iBtn = document.querySelector("#i-btn");
 const mnkyImg = document.querySelector("#monkey-img");
 const userWinAudio = document.querySelector("#user-win-audio");
 const computerWinAudio = document.querySelector("#computer-win-audio");
 const kidsModeTag = document.querySelector("#kids-mode");
 const onBtn = document.querySelector("#on");
 const offBtn = document.querySelector("#off");
+const iBtn = document.querySelector("#i-btn");
+const rulesTag = document.querySelector("#rules");
+const headerOptions = document.querySelector("#header-options");
 
 let kidsMode = "off";
 const options = ["snake", "water", "gun"];
 let i = 0;
+
+iBtn.addEventListener("click", () => {
+    const cls = iBtn.classList;
+    if (cls == "opened") {
+        iBtn.classList.replace("opened", "closed");
+        generalWrapper.style.opacity = "1";
+        rulesTag.style.display = "none";
+    }
+    else {
+        iBtn.classList.replace("closed", "opened");
+        generalWrapper.style.opacity = "0";
+        rulesTag.style.display = "flex";
+    }
+});
+
+main.addEventListener("click", () => {
+    const cls = iBtn.classList;
+    if (cls == "opened") {
+        iBtn.classList.replace("opened", "closed");
+        generalWrapper.style.opacity = "1";
+        rulesTag.style.display = "none";
+    }
+})
 
 onBtn.addEventListener("click", () => {
     offBtn.style.backgroundColor = "transparent";
@@ -39,7 +65,7 @@ offBtn.addEventListener("click", () => {
     offBtn.style.backgroundColor = "#4ca590";
     kidsModeTag.dataset.key = "off";
     kidsMode = kidsModeTag.dataset.key;
-    mnkyImg.style.display="none";
+    mnkyImg.style.display = "none";
 });
 
 
@@ -48,11 +74,11 @@ userOptions.forEach(option => {
         changeToWaitState(e);
     });
 
-    option.addEventListener("keydown", (e) => {
-        if (e.keyCode == 13) {
-            changeToWaitState(e);
-        }
-    });
+    // option.addEventListener("keydown", (e) => {
+    //     if (e.keyCode == 13) {
+    //         changeToWaitState(e);
+    //     }
+    // });
 });
 
 restartBtn.addEventListener("click", restartGame)
@@ -84,6 +110,7 @@ function removeWaitState(e, myInterval) {
     clearInterval(myInterval)
     playRound(e)
     userSelectionImg.classList.remove("sel-img");
+    
     computerSelectionImg.classList.remove("sel-img");
     waitMsgTag.style.visibility = "hidden";
     roundWrapper.style.visibility = "unset";
@@ -94,7 +121,9 @@ function allowEvents() {
     userOptions.forEach(option => {
         option.style.pointerEvents = "unset";
     });
-    kidsModeTag.style.pointerEvents="unset";
+    kidsModeTag.style.pointerEvents = "unset";
+    headerOptions.style.cursor="pointer";
+    iBtn.style.pointerEvents="unset";
 }
 
 function blockEvents() {
@@ -102,7 +131,9 @@ function blockEvents() {
     userOptions.forEach(option => {
         option.style.pointerEvents = "none";
     });
-    kidsModeTag.style.pointerEvents="none";
+    kidsModeTag.style.pointerEvents = "none";
+    headerOptions.style.cursor="not-allowed";
+    iBtn.style.pointerEvents="none";
 }
 
 function selectionAnimation() {

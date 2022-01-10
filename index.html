@@ -5,21 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/snake.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
-    <title>SWG</title>
+    <title>SWG | Jungle theme</title>
 </head>
 
 <body>
     <header>
         <h2 id="header-title"> Snake Water Gun</h2>
         <div id="header-options">
-                <p>Kids mode</p>
-                <div id="kids-mode" data-key="off">
-                    <div id="off">off</div>
-                    <div id="on">on</div>
-                </div>
-            <img src="./assets/speaker-on.png" alt="">
-            <img src="./assets/info-btn.png" alt="">
+            <p>Kids mode</p>
+            <div id="kids-mode" data-key="off">
+                <div id="off">off</div>
+                <div id="on">on</div>
+            </div>
+            <img src="./assets/info-btn.png" alt="" id="i-btn" class="closed">
+            <ol id="rules" >
+                <h4>Rules</h4>
+                <li><span>Snake</span> drains Water</li>
+                <li><span>Water</span> drowns Gun</li>
+                <li><span>Gun</span> kills Snake</li>
+            </ol>
         </div>
     </header>
     <main>
